@@ -39,7 +39,7 @@ const Register = () => {
     }
   
   const handleGoogleSignin = () => {
-    signInWithGooglePopup(email, password)
+    signInWithGooglePopup()
     .then(result => {
       const user = result.user;
       Swal.fire({

@@ -4,18 +4,41 @@ import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { signInWithPopup } from 'firebase/auth';
+import { AuthContext } from '../Context/AuthProvider';
 
 const Login = () => {
+  const { signInWithGooglePopup, signIn } = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState(true);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const handleSubmit = (event) => {
       event.preventDefault();
       const form = event.target;
       const email = form.email.value;
       const password = form.password.value;
+
+      signIn(email, password)
+      .then(result => {
+        const user = result.user;
+        Swal.fire({
+          icon: 'success',
+          title: 'Sign In successfully!!',
+          timer: 1500
+        });
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: 'error',
+          title: `${error.message}`,
+          timer: 1500
+        });
+      })
     }
-    
+
     const handleGoogleSignin = () => {
-      signInWithGooglePopup(email, password)
+      signInWithGooglePopup()
       .then(result => {
         const user = result.user;
         Swal.fire({
@@ -85,7 +108,6 @@ const Login = () => {
 
             <div>
               <button
-                onClick={}
                 type='submit'
                 className='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
               >
@@ -112,6 +134,7 @@ const Login = () => {
         </div>
         <div className='flex justify-center space-x-4'>
           <button
+            onClick={handleGoogleSignin}
             aria-label='Log in with Google'
             className='p-3 rounded-sm'
           >
