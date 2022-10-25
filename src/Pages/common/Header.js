@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import lgo from '../../assets/hdr-logo.png';
 import HeaderTop from './HeaderTop';
 import avtar from '../../assets/avatar.png'
@@ -23,22 +23,23 @@ const Header = ({user}) => {
             <HeaderTop />
             <header className="p-4 bg-[#dde4dd] text-gray-900 font-bold py-4">
                 <div className="max-w-7xl lg:px-4 flex justify-between h-16 mx-auto">
-                    <div className="flex">
+                    <div className="flex items-center">
                         <Link to="/" aria-label="Back to homepage" className="flex items-center p-2">
                             <img className='w-20' src={lgo} alt="" srcset="" />
                         </Link>
-                        <ul className="items-stretch hidden space-x-3 lg:flex">
-                            <li className="flex">
-                                <Link rel="noopener noreferrer" to="/home" className="flex items-center px-4">Home</Link>
+                        <ul className="items-stretch hidden space-x-3 lg:flex items-center">
+                            <li className="">
+                                <NavLink rel="noopener noreferrer" to="/home"
+                                className={({isActive}) => isActive ?  "px-4 py-2 bg-[#d4d4d4]" : 'px-4 py-2'}>Home</NavLink>
                             </li>
-                            <li className="flex">
-                                <Link rel="noopener noreferrer" to="/courses" className="flex items-center px-4">Courses</Link>
+                            <li className="">
+                                <NavLink rel="noopener noreferrer" to="/courses" className={({isActive}) => isActive ?  "px-4 py-2 bg-[#d4d4d4]" : 'px-4 py-2'}>Courses</NavLink>
                             </li>
-                            <li className="flex">
-                                <Link rel="noopener noreferrer" to="/faq" className="flex items-center px-4">Faq</Link>
+                            <li className="">
+                                <NavLink rel="noopener noreferrer" to="/faq" className={({isActive}) => isActive ?  "px-4 py-2 bg-[#d4d4d4]" : 'px-4 py-2'}>Faq</NavLink>
                             </li>
-                            <li className="flex">
-                                <Link rel="noopener noreferrer" to="/blog" className="flex items-center px-4">Blog</Link>
+                            <li className="">
+                                <NavLink rel="noopener noreferrer" to="/blog" className={({isActive}) => isActive ?  "px-4 py-2 bg-[#d4d4d4]" : 'px-4 py-2'}>Blog</NavLink>
                             </li>
                         </ul>
                     </div>
