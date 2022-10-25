@@ -1,10 +1,18 @@
 import React, { useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee, faEye, } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react';
 const Register = () => {
-  const handleSubmit = () => {
-
+  const [showPassword, setShowPassword] = useState(true);
+  const handleSubmit = event => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photoUrl = form.photoUrl.value;
+    const email = form.email.value;
+    const password = form.password.value;
   }
   
   const handleGoogleSignin = () => {
@@ -12,84 +20,87 @@ const Register = () => {
   }
 
   return (
-    <div className='justify-center items-center pt-8 mt-24'>
+    <div className='justify-center items-center pt-8 my-24'>
       <div className='flex flex-col max-w-lg p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900 m-auto'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Register</h1>
           <p className=' text-gray-400'>Create a new account</p>
         </div>
-        <form
-          onSubmit={handleSubmit}
-          noValidate=''
-          action=''
-          className='space-y-12 ng-untouched ng-pristine ng-valid'
-        >
-          <div className='space-y-4'>
-            <div>
-              <label htmlFor='email' className='block mb-2 '>
-                Name
-              </label>
-              <input
-                type='text'
-                name='name'
-                id='name'
-                placeholder='Enter Your Name Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
-                data-temp-mail-org='0'
-              />
-            </div>
-            <div>
-              <label htmlFor='email' className='block mb-2 '>
-                Photo URL
-              </label>
-              <input
-                type='text'
-                name='photoUrl'
-                id='photoUrl'
-                placeholder='Photo URL'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
-                data-temp-mail-org='0'
-              />
-            </div>
-            <div>
-              <label htmlFor='email' className='block mb-2 '>
-                Email address
-              </label>
-              <input
-                type='email'
-                name='email'
-                id='email'
-                placeholder='Enter Your Email Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
-                data-temp-mail-org='0'
-              />
-            </div>
-            <div>
-              <div className='flex justify-between mb-2'>
-                <label htmlFor='password' className=''>
-                  Password
+        <div className='relative'>
+          <form
+            onSubmit={handleSubmit}
+            noValidate=''
+            action=''
+            className='space-y-12 ng-untouched ng-pristine ng-valid'
+          >
+            <div className='space-y-4'>
+              <div>
+                <label htmlFor='email' className='block mb-2 '>
+                  Name
                 </label>
+                <input
+                  type='text'
+                  name='name'
+                  id='name'
+                  placeholder='Enter Your Name Here'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
+                  data-temp-mail-org='0'
+                />
               </div>
-              <input
-                type='password'
-                name='password'
-                id='password'
-                placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:border-gray-900 text-gray-900'
-              />
+              <div>
+                <label htmlFor='email' className='block mb-2 '>
+                  Photo URL
+                </label>
+                <input
+                  type='text'
+                  name='photoUrl'
+                  id='photoUrl'
+                  placeholder='Photo URL'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
+                  data-temp-mail-org='0'
+                />
+              </div>
+              <div>
+                <label htmlFor='email' className='block mb-2 '>
+                  Email address
+                </label>
+                <input
+                  type='email'
+                  name='email'
+                  id='email'
+                  placeholder='Enter Your Email Here'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
+                  data-temp-mail-org='0'
+                />
+              </div>
+              <div>
+                <div className='flex justify-between mb-2'>
+                  <label htmlFor='password' className=''>
+                    Password
+                  </label>
+                </div>
+                <input
+                  type={showPassword ? 'password' : 'text'}
+                  name='password'
+                  id='password'
+                  placeholder='*******'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:border-gray-900 text-gray-900'
+                />
+              </div>
             </div>
-          </div>
-          <div className='space-y-2'>
-            <div>
-              <button
-                type='submit'
-                className='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
-              >
-                Sign Up
-              </button>
+            <div className='space-y-2'>
+              <div>
+                <button
+                  type='submit'
+                  className='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
+                >
+                  Sign Up
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+          <button onClick={() => {setShowPassword(!showPassword)}} className='absolute right-4 bottom-[108px]'><FontAwesomeIcon icon={faEye} /></button>
+        </div>
         <div className='flex items-center pt-4 space-x-1'>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
           <p className='px-3  dark:text-gray-400'>

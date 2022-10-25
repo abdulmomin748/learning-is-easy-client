@@ -3,170 +3,96 @@ import { useContext, useEffect, useState } from 'react'
 import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const [showPass, setShowPass] = useState(true);
-    const from = location?.state?.from?.pathname || '/'
-    // console.log(location, from)
-
-    const [email, setEmail] = useState('');
-    const {signIn, signinWithPopUp, resetPassword, user} = useContext();
-    
+    const [showPassword, setShowPassword] = useState(true);
     const handleSubmit = (event) => {
-      
       event.preventDefault();
       const form = event.target;
       const email = form.email.value;
       const password = form.password.value;
-
-      signIn(email, password)
-      .then(result => {
-        const user = result.user;
-        form.reset();
-        Swal.fire({
-          icon: 'success',
-          title: 'User LogIn Successfully!!',
-        });
-        // navigate(from, {replace: true})
-      })
-      .catch(error => {
-        form.reset();
-        Swal.fire({
-          icon: 'error',
-          title: `${error.message}`,
-          // text: 'Something went wrong!',
-        })
-      });
     }
-
-    const handleGoogleSignin = () => {
-      signinWithPopUp()
-      .then(result => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Google Sign In Succesfully!!',
-        })
-        
-        console.log(from,location )
-      })
-      .catch(error => {
-        // console.log(error)
-        Swal.fire({
-          icon: 'error',
-          title: `${error.message}`,
-        })
-      })
-    }
-
-    useEffect(() => {
-      if(user && user.uid){
-        navigate(from, {replace: true});
-      }
-    },[user, navigate,from])
-
-
-    const handleReset = () => {
-      resetPassword(email)
-      .then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Reset link has been sent, please check your email',
-        })
-        
-      })
-      .catch(error => {
-        Swal.fire({
-          icon: 'error',
-          title: `${error.message}`,
-        })
-      })
-    }
-
     
 
 
   return (
-    <div className='justify-center items-center pt-8  mt-24'>
-      <div className='m-auto flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+    <div className='justify-center items-center pt-8  my-24'>
+      <div className='m-auto flex flex-col max-w-lg p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Sign in</h1>
           <p className='text-sm text-gray-400'>
             Sign in to access your account
           </p>
         </div>
-        <form
-          onSubmit={handleSubmit}
-          noValidate=''
-          action=''
-          className='space-y-6 ng-untouched ng-pristine ng-valid'
-        >
-          <div className='space-y-4'>
-            <div>
-              <label htmlFor='email' className='block mb-2 text-sm'>
-                Email address
-              </label>
-              <input
-                onBlur={event => setEmail(event.target.value)}
-                type='email'
-                name='email'
-                id='email'
-                placeholder='Enter Your Email Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
-                data-temp-mail-org='0'
-              />
-            </div>
-            <div className='relative'>
-              <div className='flex justify-between'>
-                <label htmlFor='password' className='text-sm mb-2'>
-                  Password
+        <div className='relative'>
+          <form
+            onSubmit={handleSubmit}
+            noValidate=''
+            action=''
+            className='space-y-6 ng-untouched ng-pristine ng-valid'
+          >
+            <div className='space-y-4'>
+              <div>
+                <label htmlFor='email' className='block mb-2'>
+                  Email address
                 </label>
+                <input
+                  type='email'
+                  name='email'
+                  id='email'
+                  placeholder='Enter Your Email Here'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
+                  data-temp-mail-org='0'
+                />
               </div>
-              <input
-                type={showPass ? 'password' : 'text'}
-                name='password'
-                id='password'
-                placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:border-gray-900 text-gray-900'
-              />
+              <div className='relative'>
+                <div className='flex justify-between'>
+                  <label htmlFor='password' className='mb-2'>
+                    Password
+                  </label>
+                </div>
+                <input
+                  type={showPassword ? 'password' : 'text'}
+                  name='password'
+                  id='password'
+                  placeholder='*******'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:border-gray-900 text-gray-900'
+                />
 
-              <button onClick={() => setShowPass(!showPass)} className='z-10 absolute right-5 top-[50%]'>
-                <FontAwesomeIcon icon={faEye} />
-              </button>
-              
+                
+                
+              </div>
             </div>
-          </div>
 
-          <div>
-            <button
-              type='submit'
-              className='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
-            >
-              Sign in
-            </button>
-          </div>
-        </form>
+            <div>
+              <button
+                type='submit'
+                className='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
+              >
+                Sign in
+              </button>
+            </div>
+          </form>
+          <button onClick={() => {setShowPassword(!showPassword)}} className='absolute right-4 bottom-[85px]'><FontAwesomeIcon icon={faEye} /></button>
+        </div>
         
         <div className='space-y-1'>
           <button
-            onClick={handleReset}
-            className='text-xs hover:underline text-gray-400'
+            className='text-sm hover:underline text-gray-400'
           >
             Forgot password?
           </button>
         </div>
         <div className='flex items-center pt-4 space-x-1'>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3 text-sm dark:text-gray-400'>
+          <p className='px-3 dark:text-gray-400'>
             Login with social accounts
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div>
         <div className='flex justify-center space-x-4'>
           <button
-            onClick={handleGoogleSignin}
             aria-label='Log in with Google'
             className='p-3 rounded-sm'
           >
@@ -197,7 +123,7 @@ const Login = () => {
             </svg>
           </button>
         </div>
-        <p className='px-6 text-sm text-center text-gray-400'>
+        <p className='px-6 text-center text-gray-400'>
           Don't have an account yet?{' '}
           <Link to='/register' className='hover:underline text-gray-600'>
             Register
