@@ -3,20 +3,26 @@ import { Link, NavLink } from 'react-router-dom';
 import lgo from '../../assets/hdr-logo.png';
 import HeaderTop from './HeaderTop';
 import avtar from '../../assets/avatar.png'
-// import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
-const Header = ({user}) => {
-    // const {user, logOut} = useContext(AuthContext);
+import { AuthContext } from '../../Context/AuthProvider';
+const Header = () => {
+    const {user, logOut} = useContext(AuthContext)
     // const {displayName, email, emailVerified, uid, photoURL } = user;
+    console.log(user)
     const handleLogOut = () => {
-        // logOut()
-        // .then(() => {
-        //     Swal.fire({
-        //         icon: 'error',
-        //         title: 'Log Out Successfully!!',
-        //       })
-        // })
-        // .catch(error =>{})
+        logOut()
+        .then(() => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Log Out Successfully!!',
+              })
+        })
+        .catch(error =>{
+            Swal.fire({
+                icon: 'error',
+                title: `${error.message}`,
+              })
+        })
     }
     return (
         <>  
