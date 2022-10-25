@@ -1,115 +1,61 @@
-import { useContext, useEffect, useState } from 'react'
-// import { AuthContext } from '../Contexts/AuthProvider/AuthProvider'
+import React, { useContext } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+const Register = () => {
+  const handleSubmit = () => {
 
-const Login = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const [showPass, setShowPass] = useState(true);
-    const from = location?.state?.from?.pathname || '/'
-    // console.log(location, from)
+  }
+  
+  const handleGoogleSignin = () => {
 
-    const [email, setEmail] = useState('');
-    const {signIn, signinWithPopUp, resetPassword, user} = useContext();
-    
-    const handleSubmit = (event) => {
-      
-      event.preventDefault();
-      const form = event.target;
-      const email = form.email.value;
-      const password = form.password.value;
-
-      signIn(email, password)
-      .then(result => {
-        const user = result.user;
-        form.reset();
-        Swal.fire({
-          icon: 'success',
-          title: 'User LogIn Successfully!!',
-        });
-        // navigate(from, {replace: true})
-      })
-      .catch(error => {
-        form.reset();
-        Swal.fire({
-          icon: 'error',
-          title: `${error.message}`,
-          // text: 'Something went wrong!',
-        })
-      });
-    }
-
-    const handleGoogleSignin = () => {
-      signinWithPopUp()
-      .then(result => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Google Sign In Succesfully!!',
-        })
-        
-        console.log(from,location )
-      })
-      .catch(error => {
-        // console.log(error)
-        Swal.fire({
-          icon: 'error',
-          title: `${error.message}`,
-        })
-      })
-    }
-
-    useEffect(() => {
-      if(user && user.uid){
-        navigate(from, {replace: true});
-      }
-    },[user, navigate,from])
-
-
-    const handleReset = () => {
-      resetPassword(email)
-      .then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Reset link has been sent, please check your email',
-        })
-        
-      })
-      .catch(error => {
-        Swal.fire({
-          icon: 'error',
-          title: `${error.message}`,
-        })
-      })
-    }
-
-    
-
+  }
 
   return (
-    <div className='justify-center items-center pt-8  mt-24'>
-      <div className='m-auto flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+    <div className='justify-center items-center pt-8 mt-24'>
+      <div className='flex flex-col max-w-lg p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900 m-auto'>
         <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold'>Sign in</h1>
-          <p className='text-sm text-gray-400'>
-            Sign in to access your account
-          </p>
+          <h1 className='my-3 text-4xl font-bold'>Register</h1>
+          <p className=' text-gray-400'>Create a new account</p>
         </div>
         <form
           onSubmit={handleSubmit}
           noValidate=''
           action=''
-          className='space-y-6 ng-untouched ng-pristine ng-valid'
+          className='space-y-12 ng-untouched ng-pristine ng-valid'
         >
           <div className='space-y-4'>
             <div>
-              <label htmlFor='email' className='block mb-2 text-sm'>
+              <label htmlFor='email' className='block mb-2 '>
+                Name
+              </label>
+              <input
+                type='text'
+                name='name'
+                id='name'
+                placeholder='Enter Your Name Here'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
+                data-temp-mail-org='0'
+              />
+            </div>
+            <div>
+              <label htmlFor='email' className='block mb-2 '>
+                Photo URL
+              </label>
+              <input
+                type='text'
+                name='photoUrl'
+                id='photoUrl'
+                placeholder='Photo URL'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
+                data-temp-mail-org='0'
+              />
+            </div>
+            <div>
+              <label htmlFor='email' className='block mb-2 '>
                 Email address
               </label>
               <input
-                onBlur={event => setEmail(event.target.value)}
                 type='email'
                 name='email'
                 id='email'
@@ -118,49 +64,36 @@ const Login = () => {
                 data-temp-mail-org='0'
               />
             </div>
-            <div className='relative'>
-              <div className='flex justify-between'>
-                <label htmlFor='password' className='text-sm mb-2'>
+            <div>
+              <div className='flex justify-between mb-2'>
+                <label htmlFor='password' className=''>
                   Password
                 </label>
               </div>
               <input
-                type={showPass ? 'password' : 'text'}
+                type='password'
                 name='password'
                 id='password'
                 placeholder='*******'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:border-gray-900 text-gray-900'
               />
-
-              <button onClick={() => setShowPass(!showPass)} className='z-10 absolute right-5 top-[50%]'>
-                <FontAwesomeIcon icon={faEye} />
-              </button>
-              
             </div>
           </div>
-
-          <div>
-            <button
-              type='submit'
-              className='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
-            >
-              Sign in
-            </button>
+          <div className='space-y-2'>
+            <div>
+              <button
+                type='submit'
+                className='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
+              >
+                Sign Up
+              </button>
+            </div>
           </div>
         </form>
-        
-        <div className='space-y-1'>
-          <button
-            onClick={handleReset}
-            className='text-xs hover:underline text-gray-400'
-          >
-            Forgot password?
-          </button>
-        </div>
         <div className='flex items-center pt-4 space-x-1'>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3 text-sm dark:text-gray-400'>
-            Login with social accounts
+          <p className='px-3  dark:text-gray-400'>
+            Signup with social accounts
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div>
@@ -197,10 +130,10 @@ const Login = () => {
             </svg>
           </button>
         </div>
-        <p className='px-6 text-sm text-center text-gray-400'>
-          Don't have an account yet?{' '}
-          <Link to='/register' className='hover:underline text-gray-600'>
-            Register
+        <p className='px-6  text-center text-gray-400'>
+          Already have an account yet?{' '}
+          <Link to='/login' className='hover:underline text-gray-600'>
+            Sign In
           </Link>
           .
         </p>
@@ -209,4 +142,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register

@@ -1,22 +1,22 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import lgo from '../../assets/w1rkxm-removebg-preview.png'
+import lgo from '../../assets/hdr-logo.png';
 import HeaderTop from './HeaderTop';
 import avtar from '../../assets/avatar.png'
-import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
+// import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
-const Header = () => {
-    const {user, logOut} = useContext(AuthContext);
+const Header = ({user}) => {
+    // const {user, logOut} = useContext(AuthContext);
     // const {displayName, email, emailVerified, uid, photoURL } = user;
     const handleLogOut = () => {
-        logOut()
-        .then(() => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Log Out Successfully!!',
-              })
-        })
-        .catch(error =>{})
+        // logOut()
+        // .then(() => {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Log Out Successfully!!',
+        //       })
+        // })
+        // .catch(error =>{})
     }
     return (
         <>  
@@ -25,20 +25,20 @@ const Header = () => {
                 <div className="max-w-7xl lg:px-4 flex justify-between h-16 mx-auto">
                     <div className="flex">
                         <Link to="/" aria-label="Back to homepage" className="flex items-center p-2">
-                            <img className='w-32' src={lgo} alt="" srcset="" />
+                            <img className='w-20' src={lgo} alt="" srcset="" />
                         </Link>
                         <ul className="items-stretch hidden space-x-3 lg:flex">
                             <li className="flex">
-                                <Link rel="noopener noreferrer" to="/home" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Home</Link>
+                                <Link rel="noopener noreferrer" to="/home" className="flex items-center px-4">Home</Link>
                             </li>
                             <li className="flex">
-                                <Link rel="noopener noreferrer" to="/about" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">About</Link>
+                                <Link rel="noopener noreferrer" to="/courses" className="flex items-center px-4">Courses</Link>
                             </li>
                             <li className="flex">
-                                <Link rel="noopener noreferrer" to="/contact" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Contact Us</Link>
+                                <Link rel="noopener noreferrer" to="/faq" className="flex items-center px-4">Faq</Link>
                             </li>
                             <li className="flex">
-                                <Link rel="noopener noreferrer" to="/blog" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Blog</Link>
+                                <Link rel="noopener noreferrer" to="/blog" className="flex items-center px-4">Blog</Link>
                             </li>
                         </ul>
                     </div>
