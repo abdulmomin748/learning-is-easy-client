@@ -40,3 +40,13 @@
     width: initial!important;
     height: initial!important;
 }
+
+.custom-brder::after{
+    position: absolute;  
+    content: '';      
+    width: 40px;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: black;
+}

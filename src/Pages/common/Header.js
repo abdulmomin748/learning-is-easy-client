@@ -59,10 +59,10 @@ const Header = () => {
                                 <Link  to='/login' className="mr-4 px-8 py-3 font-semibold rounded bg-violet-900 text-white">Sign In</Link>
                             </>
                         }
-                        <div className="avatar online ">
+                        <div className=" ">
                             <Link to='/profile' className="w-16 rounded-full flex items-center custom-avater" id='hellow' title={user?.displayName}>
                                 {
-                                    user?.uid ? <img className="w-14 rounded-full flex items-center" src={user?.photoURL} alt=""/> : <img className='c-img w-14' src={avtar} alt="profileImage"/>
+                                    user?.uid ? <span className='avatar online'><img className="w-14 rounded-full flex items-center " src={user?.photoURL} alt=""/></span> : <img className='c-img w-14' src={avtar} alt="profileImage"/>
                                 }
                             </Link>
                         </div>

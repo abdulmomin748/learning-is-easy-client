@@ -21,7 +21,7 @@ const Profile = () => {
                   src={user?.photoURL ? user?.photoURL : avatarImg}
                   referrerPolicy='no-referrer'
                   alt=''
-                  className=' border w-32 h-32 rounded-full bg-gray-500 border-gray-700'
+                  className=' w-32 h-32 rounded-full '
                 />
               </div>
             </div>
@@ -51,7 +51,7 @@ const Profile = () => {
             </span>
             <span className='flex items-center space-x-2 w-full'>
               <span className='text-gray-400 text-small'>
-                Email Status:{' '}
+                Is Email Varified:{' '}
                 
                   {
                     // if(user){
@@ -62,7 +62,7 @@ const Profile = () => {
               </span>
             </span>
             <span className='flex items-center space-x-2 w-full'>
-              <span className='text-gray-400 text-small w-full'>
+              <span className='text-gray-400 text-sm w-full'>
                 Id: {' '}
                 {user?.uid}
               </span>
