@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import imgPdf from '../assets/pdf.png';
+
 import Pdf from "react-to-pdf";
+
 const ref = React.createRef();
 const CourseDetails = () => {
     const courseDetails = useLoaderData();
@@ -28,7 +30,6 @@ const CourseDetails = () => {
                             </button>
                         }
                     </Pdf>
-                    
                 </div>
             </div>
         </div> 
