@@ -60,7 +60,7 @@ const Header = () => {
                             </>
                         }
                         <div className="avatar online ">
-                            <Link to='/profile' className="w-16 rounded-full flex items-center custom-avater" id='hellow' title=     {user?.displayName}>
+                            <Link to='/profile' className="w-16 rounded-full flex items-center custom-avater" id='hellow' title={user?.displayName}>
                                 {
                                     user?.uid ? <img className="w-14 rounded-full flex items-center" src={user?.photoURL} alt=""/> : <img className='c-img w-14' src={avtar} alt="profileImage"/>
                                 }

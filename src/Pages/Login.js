@@ -8,7 +8,11 @@ import { signInWithPopup } from 'firebase/auth';
 import { AuthContext } from '../Context/AuthProvider';
 
 const Login = () => {
-  const { signInWithGooglePopup, signInWithGoogle, signInWithGithubPopup } = useContext(AuthContext)
+  const { user, signInWithGooglePopup, signInWithGoogle, signInWithGithubPopup } = useContext(AuthContext);
+  const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
+    console.log(location)
     const [showPassword, setShowPassword] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -75,6 +79,12 @@ const Login = () => {
       })
     }
 
+    useEffect(() => {
+      if(user){
+        navigate(from, {replace: true});
+      }
+    },[user, navigate, from]); {/*user, navigate, from*/}
+    
   return (
     <div className='justify-center items-center pt-8  my-24'>
       <div className='m-auto flex flex-col max-w-lg p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>

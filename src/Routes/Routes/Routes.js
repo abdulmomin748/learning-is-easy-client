@@ -1,5 +1,7 @@
 import Login from "../../Pages/Login";
+import Profile from "../../Pages/Profile";
 import Register from "../../Pages/Register";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layout/Main");
@@ -25,7 +27,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/courses',
-                element: <Courses />
+                element: <PrivateRoute><Courses /></PrivateRoute>
             },
             {
                 path: '/faq',
@@ -42,6 +44,10 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login />
+            },
+            {
+                path: '/profile',
+                element: <PrivateRoute><Profile /></PrivateRoute>
             }
         ]
     }

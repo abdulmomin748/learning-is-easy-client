@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
 
-import avatarImg from '../assets/login.png'
-import { AuthContext } from '../Contexts/AuthProvider/AuthProvider'
-import pic from '../assets/full02-lowres.jpg'
+import avatarImg from '../assets/avatar.png'
+import pic from '../assets/small-profile-unstyled-1.png'
+import { AuthContext } from '../Context/AuthProvider'
 
 const Profile = () => {
   const { user } = useContext(AuthContext)
 
   return (
-    <div className='flex justify-center  min-h-[80vh] flex justify-center items-center' style={{
+    <div className='flex justify-center  min-h-[80vh] items-center' style={{
       backgroundImage: ` url(${pic})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'
     }}>
       <div className='max-w-lg shadow-lg  h-[200px] p-8 sm:flex sm:space-x-6 bg-gray-100 text-gray-900 rounded'>

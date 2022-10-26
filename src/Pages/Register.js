@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,7 +6,8 @@ import { faEye, } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 import { AuthContext } from '../Context/AuthProvider';
 const Register = () => {
-  const [showPassword, setShowPassword ] = useState(true);
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword, user ] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { createUser, addNameImg, signInWithGooglePopup, signInWithGithubPopup} = useContext(AuthContext)
@@ -28,6 +29,7 @@ const Register = () => {
         addNameImg(name, photoUrl)
         .then(() => {}).catch(() => {});
         console.log(result.user)
+        navigate('/')
       })
       .catch(error => {
         Swal.fire({
@@ -47,6 +49,7 @@ const Register = () => {
         title: 'Create user successfully!!',
         timer: 1500
       });
+      navigate('/')
     })
     .catch(error => {
       Swal.fire({
@@ -66,6 +69,7 @@ const Register = () => {
         title: 'Create user successfully!!',
         timer: 1500
       });
+      navigate('/')
     })
     .catch(error => {
       Swal.fire({
@@ -75,6 +79,7 @@ const Register = () => {
       });
     })
   }
+
 
   return (
     <div className='justify-center items-center pt-8 my-24'>
