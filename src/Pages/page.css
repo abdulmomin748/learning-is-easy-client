@@ -9,12 +9,16 @@
     display: none!important;
 }
 
-.bg-img{
-    background-image: url('../assets/stages-of-learning-programming-1.jpg') ;
+.bg-img, .dark .bg-img{
+    background-image: url('../assets/stages-of-learning-programming-1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 }
+.dark .bg-img{
+    background-image: url('../assets/dark-bg.png') ;
+}
+
 *{
     box-sizing: border-box;
 }
@@ -75,4 +79,72 @@
 }
 .course-title2::after{
     background-color: #000;
+}
+.light .question-title::after{
+    background-color: black;
+}
+
+
+@media screen and (max-width: 1199px) {
+    .custom-grid-style .grid{
+        grid-template-columns: repeat(2, 300px);
+        padding: 40px 20px;
+    }
+}
+@media screen and (max-width: 992px) {
+    .footer {
+        grid-template-columns: repeat(3, 1fr)!important;
+        grid-auto-flow: row;
+    }
+    .custom-grid-style .grid{
+        grid-template-columns: repeat(1, 300px);
+        padding: 40px 20px;
+        width: 60%;
+        margin-right: 20px;
+    }
+    .custom-grid-style .right-sidebar{
+        width: 40%;
+    }
+  }
+
+/* .accordion .overflow-hidden{
+    height: 250px!important;
+} */
+@media screen and (max-width: 768px) {
+    .footer {
+        grid-template-columns: repeat(2, 1fr)!important;
+        grid-auto-flow: row;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .footer {
+        grid-template-columns: repeat(1, 1fr)!important;
+    }
+    .c-col{
+        justify-content: center;
+        width: 100%!important;
+        align-items: center;
+    }
+    .custom-grid-style{
+        flex-direction: column;
+    }
+    .custom-grid-style .grid{
+        grid-template-columns: repeat(1, 420px);
+        padding: 40px 10px;
+        width: 100%;
+        order: 2;
+    }
+    .custom-grid-style .right-sidebar{
+        order: 1;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .custom-grid-style .grid{
+        grid-template-columns: repeat(1, 270px);
+        margin: 0;
+    }
 }

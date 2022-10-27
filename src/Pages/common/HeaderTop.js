@@ -10,7 +10,7 @@ const HeaderTop = () => {
     console.log(toggleTheme,theme );
     return (
         <>
-        <div className=''>{/*bg-base-200*/}
+        <div className='lg:block hidden dark:border-b-[1px] border-b-[#494747]'>{/*bg-base-200*/}
             <div className='hdr-top flex justify-between items-center py-2 max-w-7xl m-auto px-4'>
                 <div className='hdr-lft flex dark:text-white text-gray-700 font-medium'>
                         <div className='flex items-center mr-4'>

@@ -83,7 +83,7 @@ const Register = () => {
 
   return (
     <div className='justify-center items-center pt-8 my-24'>
-      <div className='flex flex-col max-w-lg p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900 m-auto'>
+      <div className='flex flex-col max-w-lg p-4 rounded-md sm:p-8 dark:text-white dark:bg-gray-800 bg-gray-100 text-gray-900 m-auto'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Register</h1>
           <p className=' text-gray-400'>Create a new account</p>
@@ -154,7 +154,7 @@ const Register = () => {
               <div>
                 <button
                   type='submit'
-                  className='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
+                  className='w-full px-8 py-3 dark:bg-blue-300 dark:hover:bg-blue-500 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
                 >
                   Sign Up
                 </button>
@@ -165,7 +165,7 @@ const Register = () => {
         </div>
         <div className='flex items-center pt-4 space-x-1'>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3  dark:text-gray-400'>
+          <p className='px-3  dark:text-white'>
             Signup with social accounts
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
@@ -196,9 +196,9 @@ const Register = () => {
             </svg>
           </button>
         </div>
-        <p className='px-6  text-center text-gray-400'>
+        <p className='px-6  text-center text-gray-400 dark:text-white'>
           Already have an account yet?{' '}
-          <Link to='/login' className='hover:underline text-gray-600'>
+          <Link to='/login' className='hover:underline text-gray-600 dark:text-white'>
             Sign In
           </Link>
           .
