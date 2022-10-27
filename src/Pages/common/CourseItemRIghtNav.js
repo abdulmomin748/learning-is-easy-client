@@ -6,7 +6,7 @@ const CourseItemRIghtNav = ({courseItem, uniqueCourse}) => {
     console.log(uniqueCourse);
     return (
         <>
-            <Link to={`/courses/courseDetails/${id}`} className='mb-4 pb-1 custom-brder relative inline-block font-semibold hover:underline group-focus:underline'>{courseName}</Link>
+            <Link to={`/courses/courseDetails/${id}`} className='mb-4 pb-1 custom-brder relative inline-block font-semibold hover:underline group-focus:underline '>{courseName}</Link>
         </>
     );
 };

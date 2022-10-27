@@ -1,14 +1,17 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import lgo from '../../assets/hdr-logo.png';
+import lgoLight from '../../assets/hdr-logo2.png';
 import HeaderTop from './HeaderTop';
 import avtar from '../../assets/avatar.png'
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/AuthProvider';
+
 const Header = () => {
     const {user, logOut} = useContext(AuthContext)
     // const {displayName, email, emailVerified, uid, photoURL } = user;
-    console.log(user)
+    // console.log(user)
+    
     const handleLogOut = () => {
         logOut()
         .then(() => {
@@ -24,28 +27,32 @@ const Header = () => {
               })
         })
     }
+    const darkTheme = document.querySelector('dark');
+    const lightTheme = document.querySelector('light');
+
     return (
         <>  
             <HeaderTop />
-            <header className="p-4 bg-[#dde4dd] text-gray-900 font-bold py-4">
+            <header className="p-4 dark:bg-[#241829] bg:text-white dark:border-t-2 dark:border-b-2 bg-gray-200 text-gray-900 font-bold py-4">
                 <div className="max-w-7xl lg:px-4 flex justify-between h-16 mx-auto">
                     <div className="flex items-center">
-                        <Link to="/" aria-label="Back to homepage" className="flex items-center p-2">
-                            <img className='w-20' src={lgo} alt="" srcset="" />
+                        <Link to="/" aria-label="Back to homepage" className="flex mr-2 items-center p-2">
+                            <img className='w-20 light:hidden imgLight' src={lgo} alt="" srcset="" />
+                            <img className='w-20 dark:hidden ' src={lgoLight} alt="" srcset="" />
                         </Link>
                         <ul className="items-stretch hidden space-x-3 lg:flex items-center">
                             <li className="">
                                 <NavLink rel="noopener noreferrer" to="/home"
-                                className={({isActive}) => isActive ?  "px-4 py-2 bg-[#d4d4d4]" : 'px-4 py-2'}>Home</NavLink>
+                                className={({isActive}) => isActive ?  "px-4 py-2 rounded dark:text-gray-200 bg-[#da9707] text-gray-200" : 'px-4 py-2 dark:text-gray-200'}>Home</NavLink>
                             </li>
                             <li className="">
-                                <NavLink rel="noopener noreferrer" to="/courses" className={({isActive}) => isActive ?  "px-4 py-2 bg-[#d4d4d4]" : 'px-4 py-2'}>Courses</NavLink>
+                                <NavLink rel="noopener noreferrer" to="/courses" className={({isActive}) => isActive ?  "px-4 py-2 dark:text-gray-200 text-gray-200 bg-[#da9707] rounded" : 'px-4 py-2 dark:text-gray-200'}>Courses</NavLink>
                             </li>
                             <li className="">
-                                <NavLink rel="noopener noreferrer" to="/faq" className={({isActive}) => isActive ?  "px-4 py-2 bg-[#d4d4d4]" : 'px-4 py-2'}>Faq</NavLink>
+                                <NavLink rel="noopener noreferrer" to="/faq" className={({isActive}) => isActive ?  "px-4 py-2 dark:text-gray-200 text-gray-200 bg-[#da9707] rounded" : 'px-4 py-2 dark:text-gray-200'}>Faq</NavLink>
                             </li>
                             <li className="">
-                                <NavLink rel="noopener noreferrer" to="/blog" className={({isActive}) => isActive ?  "px-4 py-2 bg-[#d4d4d4]" : 'px-4 py-2'}>Blog</NavLink>
+                                <NavLink rel="noopener noreferrer" to="/blog" className={({isActive}) => isActive ?  "px-4 py-2 dark:text-gray-200 text-gray-200 bg-[#da9707] rounded" : 'px-4 py-2 dark:text-gray-200'}>Blog</NavLink>
                             </li>
                         </ul>
                     </div>

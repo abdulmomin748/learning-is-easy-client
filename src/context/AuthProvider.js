@@ -3,14 +3,19 @@ import { useState } from 'react';
 import { createContext } from 'react';
 import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth"; 
 import app from '../firebase/firebase.config';
+import ReactSwitch from 'react-switch';
 export const AuthContext = createContext();
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
-
+export const ThemeContext = createContext(null);
 
 const AuthProvider = ({children}) => {
+
+    
+
+
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
 
@@ -53,12 +58,23 @@ const AuthProvider = ({children}) => {
     },[])
 
     const authInfo = {user, createUser, signInWithGooglePopup, addNameImg, signInWithGoogle, signInWithGithubPopup, logOut, loading};
+
+
+    const [theme, setTheme] = useState('dark');
+    const toggleTheme = () => {
+        setTheme(curr => (curr === 'light' ? 'dark': 'light'));
+    }   
+
     return (
-        <div>
-            <AuthContext.Provider value={authInfo}>
-                {children}
-            </AuthContext.Provider>
-        </div>
+        <>
+            <ThemeContext.Provider value={{toggleTheme,theme}}>
+                <AuthContext.Provider value={authInfo}>
+                    <div className={theme}>
+                        {children}
+                    </div>
+                </AuthContext.Provider>
+            </ThemeContext.Provider>
+        </>
     );
 };
 

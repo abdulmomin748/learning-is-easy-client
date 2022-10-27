@@ -2,16 +2,17 @@ import React from 'react';
 import ReactSwitch from "react-switch"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faEnvelope , faPhone } from '@fortawesome/free-solid-svg-icons'
+import { useContext } from 'react';
+import { ThemeContext } from '../../Context/AuthProvider';
 
 const HeaderTop = () => {
-    const toggleTheme =() => {
-        console.log('hi')
-    }
+    const {toggleTheme, theme} = useContext(ThemeContext);
+    console.log(toggleTheme,theme );
     return (
         <>
         <div className=''>{/*bg-base-200*/}
             <div className='hdr-top flex justify-between items-center py-2 max-w-7xl m-auto px-4'>
-                <div className='hdr-lft flex text-gray-400'>
+                <div className='hdr-lft flex dark:text-white text-gray-700 font-medium'>
                         <div className='flex items-center mr-4'>
                             <span className='border flex justify-center items-center px-2 py-2 mr-2 rounded text-sm'><FontAwesomeIcon  icon={faPhone} /></span>
                             <a className='text-sm' href="tel:555-666-7777">555-666-7777</a>
@@ -37,7 +38,7 @@ const HeaderTop = () => {
                         </button>
                     </div>
                     <div className='ml-5'> 
-                        <ReactSwitch onChange={toggleTheme} checked />
+                        <ReactSwitch id='check' onChange={toggleTheme} checked={theme === 'dark'}/>
                     </div>
                 </div>
             </div>

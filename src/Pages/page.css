@@ -1,3 +1,14 @@
+.light{
+    background-color: #FFF;
+}
+.dark{
+    background-color: #241829;
+    color: #FFF;
+}
+.light .imgLight{
+    display: none!important;
+}
+
 .bg-img{
     background-image: url('../assets/stages-of-learning-programming-1.jpg') ;
     background-repeat: no-repeat;
@@ -49,4 +60,19 @@
     bottom: 0;
     height: 2px;
     background-color: black;
+}
+.dark .custom-brder::after{
+    background-color: rgb(189, 188, 188);
+}
+.page-title::after{
+    width: 100px;
+}
+.course-title::after,.course-title2::after{
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    background-color: #FFF;
+}
+.course-title2::after{
+    background-color: #000;
 }
