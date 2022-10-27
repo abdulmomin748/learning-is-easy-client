@@ -9,7 +9,7 @@ const CourseItem = ({courseItem}) => {
     console.log(courseItem)
     return (
         <>
-            <Link to={`/courses/courseDetails/${id}`} rel="noopener noreferrer" href="#" className="max-w-sm border-2 rounded border-gray-300 mx-auto group hover:no-underline focus:no-underline dark:text-white text-black">
+            <Link to={`/courses/courseDetails/${id}`} rel="noopener noreferrer" href="#" className="max-w-sm border-[1px] rounded border-gray-700 mx-auto group hover:no-underline focus:no-underline dark:text-white text-black">
                 <img role="presentation" className="object-cover w-full rounded h-44 " src={img}/>
                 <div className="p-3 space-y-2">
                     <h3 className="text-1xl font-bold group-hover:underline group-focus:underline">{courseName}</h3>
