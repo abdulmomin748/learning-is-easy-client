@@ -105,7 +105,7 @@ const Register = () => {
                   name='name'
                   id='name'
                   placeholder='Enter Your Name Here'
-                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 dark:bg-gray-400 bg-gray-200 dark:text-gray-800 text-gray-900'
                   data-temp-mail-org='0'
                 />
               </div>
@@ -118,7 +118,7 @@ const Register = () => {
                   name='photoUrl'
                   id='photoUrl'
                   placeholder='Photo URL'
-                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 dark:bg-gray-400 bg-gray-200 text-gray-900'
                   data-temp-mail-org='0'
                 />
               </div>
@@ -131,7 +131,7 @@ const Register = () => {
                   name='email'
                   id='email'
                   placeholder='Enter Your Email Here'
-                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 dark:bg-gray-400 bg-gray-200 text-gray-900'
                   data-temp-mail-org='0'
                 />
               </div>
@@ -146,7 +146,7 @@ const Register = () => {
                   name='password'
                   id='password'
                   placeholder='*******'
-                  className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:border-gray-900 text-gray-900'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 dark:bg-gray-400 bg-gray-200 focus:border-gray-900 text-gray-900'
                 />
               </div>
             </div>

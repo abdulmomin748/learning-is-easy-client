@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth"; 
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth"; 
 import app from '../firebase/firebase.config';
 import ReactSwitch from 'react-switch';
 export const AuthContext = createContext();
@@ -57,7 +57,11 @@ const AuthProvider = ({children}) => {
         }
     },[])
 
-    const authInfo = {user, createUser, signInWithGooglePopup, addNameImg, signInWithGoogle, signInWithGithubPopup, logOut, loading};
+    const resetPassword = email => {
+        return sendPasswordResetEmail(auth, email);
+    }
+
+    const authInfo = {user, createUser, signInWithGooglePopup, addNameImg, signInWithGoogle, signInWithGithubPopup, logOut, loading, resetPassword};
 
 
     const [theme, setTheme] = useState('dark');

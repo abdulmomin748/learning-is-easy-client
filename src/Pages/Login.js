@@ -8,7 +8,7 @@ import { signInWithPopup } from 'firebase/auth';
 import { AuthContext } from '../Context/AuthProvider';
 
 const Login = () => {
-  const { user, signInWithGooglePopup, signInWithGoogle, signInWithGithubPopup } = useContext(AuthContext);
+  const { user, signInWithGooglePopup, signInWithGoogle, signInWithGithubPopup , resetPassword} = useContext(AuthContext);
   const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
@@ -22,7 +22,6 @@ const Login = () => {
       const form = event.target;
       const email = form.email.value;
       const password = form.password.value;
-
       signInWithGoogle(email, password)
       .then(result => {
         const user = result.user;
@@ -79,6 +78,25 @@ const Login = () => {
       })
     }
 
+
+    const handleResetPassword = () => {
+      resetPassword(email)
+      .then(result => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Plz chek your email for reset password!!',
+          timer: 1500
+        });
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: 'error',
+          title: `${error.message}`,
+          timer: 1500
+        });
+      })
+    }
+
     useEffect(() => {
       if(user){
         navigate(from, {replace: true});
@@ -107,11 +125,12 @@ const Login = () => {
                   Email address
                 </label>
                 <input
+                  onBlur={(event) => setEmail(event.target.value)}
                   type='email'
                   name='email'
                   id='email'
                   placeholder='Enter Your Email Here'
-                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 dark:bg-gray-400 bg-gray-200 text-gray-900'
                   data-temp-mail-org='0'
                 />
               </div>
@@ -126,7 +145,7 @@ const Login = () => {
                   name='password'
                   id='password'
                   placeholder='*******'
-                  className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:border-gray-900 text-gray-900'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 dark:bg-gray-400 bg-gray-200 focus:border-gray-900 text-gray-900'
                 />
 
                 
@@ -143,11 +162,12 @@ const Login = () => {
               </button>
             </div>
           </form>
-          <button onClick={() => {setShowPassword(!showPassword)}} className='absolute right-4 bottom-[85px]'><FontAwesomeIcon icon={faEye} /></button>
+          <button onClick={setShowPassword} className='absolute right-4 bottom-[85px]'><FontAwesomeIcon icon={faEye} /></button>
         </div>
         
         <div className='space-y-1'>
           <button
+            onClick={() => handleResetPassword()}
             className='hover:underline dark:text-white text-gray-400'
           >
             Forgot password?
