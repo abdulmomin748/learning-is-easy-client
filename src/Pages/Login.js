@@ -3,8 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { signInWithPopup } from 'firebase/auth';
+import { faEye, } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../Context/AuthProvider';
 
 const Login = () => {
@@ -147,8 +146,6 @@ const Login = () => {
                   placeholder='*******'
                   className='w-full px-3 py-2 border rounded-md border-gray-300 dark:bg-gray-400 bg-gray-200 focus:border-gray-900 text-gray-900'
                 />
-
-                
                 
               </div>
             </div>
@@ -162,7 +159,7 @@ const Login = () => {
               </button>
             </div>
           </form>
-          <button onClick={setShowPassword} className='absolute right-4 bottom-[85px]'><FontAwesomeIcon icon={faEye} /></button>
+          <button onClick={() => {setShowPassword(!showPassword)}} className='absolute right-4 bottom-[87px]'><FontAwesomeIcon icon={faEye} /></button>
         </div>
         
         <div className='space-y-1'>
