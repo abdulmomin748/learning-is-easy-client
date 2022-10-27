@@ -30,7 +30,7 @@ const router = createBrowserRouter([
             {
                 path: '/courses',
                 element: <Courses />,
-                loader: () => fetch('http://localhost:5000/courses'),
+                loader: () => fetch('https://learning-is-easy-server-l1vq6dyy2-abdulmomin748.vercel.app/courses'),
             },
             {
                 path: '/faq',
@@ -55,12 +55,12 @@ const router = createBrowserRouter([
             {
                 path: '/courses/courseDetails/:id',
                 element: <CourseDetails/>,
-                loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+                loader: ({params}) => fetch(`https://learning-is-easy-server-l1vq6dyy2-abdulmomin748.vercel.app/courses/${params.id}`)
             },
             {
                 path: 'checkout/:id',
                 element: <PrivateRoute><Checkout/></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+                loader: ({params}) => fetch(`https://learning-is-easy-server-l1vq6dyy2-abdulmomin748.vercel.app/courses/${params.id}`)
             }
         ]
     }
